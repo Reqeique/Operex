@@ -65,11 +65,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<HomePage />} />
       <Route path="/admin-login" element={<AdminLogin />} />
       <Route path="/student-login" element={<StudentLogin />} />
-      <Route path="/calander" element={<Calander />} />
-      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }

@@ -1,0 +1,60 @@
+.transcript {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-auto-rows: min-content;
+      grid-template-rows: auto;
+      grid-template-rows: min-content;
+
+    grid-template-columns:auto auto;
+}
+
+.root {
+   width:100%
+}
+.buttonT {
+  /* height: 50px; */
+    all: unset;
+    align-items: center;
+    background-color: #4555ff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: inline-flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px 24px;
+    position: relative;
+  }
+  
+.dt {
+  text-align: start;
+
+}
+.pt {
+  text-align: start;
+ 
+}
+.buttonT {
+  
+  float: left;
+}
+
+.textWrapper {
+    color: #ffffff;
+  
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 16.8px;
+    margin-top: -1px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+  }
+
+  .imageT {
+    height: 75vh
+    ;width: 75vh;
+    background: #000;
+   
+  }

@@ -1,6 +1,7 @@
 .logoIcon {
-  height: 50px;
-  width: 50px;
+  height: 25px;
+  width: 25px;
+  justify-content: center;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -12,6 +13,7 @@
   color: inherit;
   display: inline-block;
   min-width: 112px;
+  font-size: 1em;
   white-space: nowrap;
 }
 .operexWrapper {
@@ -26,6 +28,7 @@
   justify-content: flex-start;
 }
 .logoParent {
+  align-items: center;
   flex-direction: row;
   padding: 0 112px 0 0;
   gap: 8px;
@@ -124,17 +127,22 @@
   max-width: 100%;
 }
 .frameParent {
+  
+  /* border-bottom: 1px solid var(--color-gray-400); */
+ 
   margin: 0;
   flex: 1;
-  gap: 31px;
+  margin-top: 16px;
+  gap: 15px;
   text-align: center;
   font-size: var(--font-size-base);
   color: var(--color-darkslategray-100);
   font-family: var(--font-poppins);
 }
 .homePageInner {
+  border-bottom: 1px solid var(--color-gray-400);
   align-self: stretch;
-  padding: 0 28px 0 var(--padding-2xl);
+  padding: 16px;
   box-sizing: border-box;
 }
 .logoutIcon {
@@ -166,7 +174,7 @@
 }
 .homePage,
 .homePageChild {
-  display: flex;
+  /* display: flex; */
   align-items: flex-start;
   box-sizing: border-box;
 }
@@ -180,11 +188,12 @@
   width: 100%;
   position: relative;
   background-color: var(--color-white);
-  overflow: hidden;
+
   flex-direction: column;
   justify-content: flex-start;
-  padding: 32px 14px 116px;
-  gap: 116px;
+  padding: 16px;
+  gap: 3vh;
+ 
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
@@ -199,18 +208,19 @@
 }
 @media screen and (max-width: 750px) {
   .frameParent {
-    gap: var(--gap-mini);
+    /* gap: var(--gap-mini); */
   }
   .homePage {
-    gap: 58px;
+    /* gap: 58px; */
   }
 }
 @media screen and (max-width: 450px) {
   .logoParent {
-    padding-right: var(--padding-xl);
+    /* padding-right: var(--padding-xl); */
     box-sizing: border-box;
   }
   .homePage {
-    gap: 29px;
+    /* gap: 29px; */
   }
+  
 }

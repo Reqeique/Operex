@@ -1,4 +1,5 @@
 .progressTop {
+  grid-area: progressTop;
   border: 1px solid var(--color-gray-400);
   background-color: transparent;
   height: 327px;
@@ -164,19 +165,20 @@
 }
 .gpa,
 .gpaPlaceholder {
+
   position: relative;
   z-index: 2;
 }
 .gpaPlaceholder {
-  align-self: stretch;
+  align-self: center;
   font-weight: 600;
 }
 .gpa {
   flex: 1;
 }
 .progressChart {
-  align-self: stretch;
-  display: flex;
+  align-self: center;
+
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-end;
@@ -332,6 +334,8 @@
   max-width: 100%;
 }
 .academicProgress {
+  grid-area: academicProgress;
+
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -467,6 +471,7 @@
 }
 .calendarDatePlaceholders,
 .calendarHeader {
+
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -880,16 +885,15 @@
   font-size: var(--font-size-smi);
 }
 .calander {
-  margin-top: -804px;
-  margin-right: -410px;
-  margin-bottom: 458px;
+  grid-area: calendar;
+  
+
   width: 330px;
   border-radius: var(--br-3xs);
   background-color: var(--color-white);
   border: 1px solid var(--color-gray-400);
   box-sizing: border-box;
-  padding: var(--padding-2xl) var(--padding-xs) var(--padding-xs)
-    var(--padding-lgi);
+  
   gap: var(--gap-6xs);
   flex-shrink: 0;
   debug_commit: bf4bc93;
@@ -1205,6 +1209,7 @@
   max-width: 100%;
 }
 .announcement {
+  grid-area: announcement;
   height: 321px;
   flex: 1;
   border-radius: var(--br-3xs);
@@ -1397,6 +1402,7 @@
   max-width: 100%;
 }
 .myTask {
+  grid-area: myTask;
   width: 328px;
   border-radius: var(--br-mini);
   background-color: var(--color-white);
@@ -1423,6 +1429,16 @@
   flex-direction: column;
   gap: var(--gap-base);
 }
+.mainContent {
+  display: grid;
+  grid-template: 'progressTop calendar'
+  'academicProgress myTask'
+  'announcement myTask'
+}
+b {
+  color:rgba(0, 0, 0);
+  font-size: 18px;
+}
 @media screen and (max-width: 1225px) {
   .myTask {
     flex: 1;
@@ -1434,6 +1450,12 @@
 @media screen and (max-width: 1050px) {
   .progressHeader {
     min-width: 100%;
+  }
+  .mainContent {
+    display: grid;
+    grid-template: 'progressTop calendar'
+    'academicProgress myTask'
+    'announcement myTask'
   }
 }
 @media screen and (max-width: 750px) {
@@ -1451,18 +1473,23 @@
     flex-wrap: wrap;
   }
   .announcement {
-    padding-top: var(--padding-21xl);
-    padding-right: var(--padding-5xl);
-    padding-bottom: var(--padding-xl);
-    box-sizing: border-box;
+  
+ 
   }
   .myTask {
-    padding-top: var(--padding-2xl);
-    padding-bottom: var(--padding-348xl);
+    
     box-sizing: border-box;
   }
   .progressContent {
-    gap: var(--gap-base);
+    /* gap: var(--gap-base); */
+  }
+  .mainContent {
+    display: grid;
+    grid-template: 'progressTop'
+      'calendar'
+    'academicProgress' 
+    'myTask'
+    'announcement'
   }
 }
 @media screen and (max-width: 450px) {
@@ -1470,21 +1497,18 @@
     font-size: var(--font-size-lgi);
   }
   .gPAName {
-    padding-left: var(--padding-xl);
-    padding-right: var(--padding-xl);
+   
     box-sizing: border-box;
   }
   .standingPlaceholder {
     font-size: var(--font-size-lgi);
   }
   .standingValue1 {
-    padding-left: var(--padding-xl);
-    padding-right: var(--padding-xl);
+
     box-sizing: border-box;
   }
   .academicProgress {
-    padding-top: var(--padding-4xl);
-    padding-bottom: var(--padding-xl);
+ 
     box-sizing: border-box;
   }
   .weekdayNames,
@@ -1504,5 +1528,23 @@
   }
   .announcement {
     height: auto;
+  }
+  .mainContent {
+    display: grid;
+    grid-template: 'progressTop auto'
+      'calendar auto'
+    'academicProgress auto' 
+    'myTask auto'
+    'announcement auto'
+  }
+}
+@media screen and (max-width: 1024px) {
+  .mainContent {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+@media screen and (max-width: 768px) {
+  .mainContent {
+    grid-template-columns: 1fr;
   }
 }

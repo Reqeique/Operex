@@ -3,11 +3,11 @@
   margin: 0;
 }
 .helloDanielWelcomeContainer1 {
-  width: 100%;
+  /* width: 100%; */
 }
 .helloDanielWelcomeContainer {
   margin: 0;
-  width: 491px;
+
   position: relative;
   font-size: inherit;
   font-weight: 600;
@@ -17,7 +17,7 @@
   max-width: 100%;
 }
 .dashboard {
-  width: 100%;
+
   position: relative;
   background-color: var(--color-white);
   overflow: hidden;
@@ -25,13 +25,13 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 86px 182px 115px 200px;
+  padding: 16px;
   box-sizing: border-box;
   gap: 34px;
   line-height: normal;
   letter-spacing: normal;
   text-align: left;
-  font-size: var(--font-size-29xl);
+  font-size: var(--font-size-21xl);
   color: var(--color-mediumslateblue-200);
   font-family: var(--font-be-vietnam-pro);
 }

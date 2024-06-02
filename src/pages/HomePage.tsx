@@ -1,8 +1,33 @@
 import { FunctionComponent } from "react";
 import FrameComponent1 from "../components/FrameComponent1";
 import styles from "./HomePage.module.css";
+import Dashboard from "./Dashboard"
+import SelfServiceForum from './SelfServiceForum'
+import {
+  Routes,
+  Route,
+  useNavigationType,
+  useLocation, useNavigate
+} from "react-router-dom";
+
+import AdminLogin from "./AdminLogin";
+import StudentLogin from "./StudentLogin";
+import Calander from "./Calander";
 
 const HomePage: FunctionComponentHomePageType = () => {
+  const navigate = useNavigate();
+  const handleCalendarClick = () => {
+    navigate('/calander');
+  };
+
+  const handleDashboardClick = () => {
+    navigate('/dashboard');
+  };
+
+  const handleSSFClick = () => {
+    navigate('/ssf')
+  }
+  
   return (
     <div className={styles.homePage}>
       <header className={styles.homePageInner}>
@@ -37,19 +62,21 @@ const HomePage: FunctionComponentHomePageType = () => {
           </div>
         </nav>
       </header>
-      <FrameComponent1 />
+
+      {/*  */}
+    <div style={{ display: "inline-grid", left: '0', position: 'absolute', gridTemplateColumns: "auto auto"}}>
+      <FrameComponent1 onCalendarClick={handleCalendarClick} onDashboardClick={handleDashboardClick} onSSFClick={handleSSFClick}/>
+      {/* {window.location.pathname === "/calander" ? <Calendar /> : <Dashboard />} */}
+      <Routes>
+      
+      <Route path="/calander" element={<Calander />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/ssf" element={<SelfServiceForum />} />
+    </Routes>
+      </div>
+      
       <div className={styles.homePageChild}>
-        <div className={styles.logoutParent}>
-          <img
-            className={styles.logoutIcon}
-            loading="lazy"
-            alt=""
-            src="/logout.svg"
-          />
-          <div className={styles.logoutWrapper}>
-            <div className={styles.logout}>Logout</div>
-          </div>
-        </div>
+       
       </div>
     </div>
   );
