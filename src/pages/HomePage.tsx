@@ -3,6 +3,7 @@ import FrameComponent1 from "../components/FrameComponent1";
 import styles from "./HomePage.module.css";
 import Dashboard from "./Dashboard"
 import SelfServiceForum from './SelfServiceForum'
+import Focus from './Focus'
 import {
   Routes,
   Route,
@@ -27,7 +28,15 @@ const HomePage: FunctionComponentHomePageType = () => {
   const handleSSFClick = () => {
     navigate('/ssf')
   }
-  
+  const handleAssistantClick = () => {
+    navigate('/assistant')
+  }
+  const handleFocusClick = () => {
+    navigate('/focus')
+  }
+  const handleResourcesClick = () => {
+    navigate('/resources')
+  }
   return (
     <div className={styles.homePage}>
       <header className={styles.homePageInner}>
@@ -45,8 +54,9 @@ const HomePage: FunctionComponentHomePageType = () => {
           </div>
           <input
             className={styles.frameChild}
-            placeholder="Search for action "
+            placeholder="Talk to Operexai"
             type="text"
+            onClick={handleAssistantClick}
           />
           <div className={styles.amWrapper}>
             <a className={styles.am}>09:27 AM</a>
@@ -65,13 +75,15 @@ const HomePage: FunctionComponentHomePageType = () => {
 
       {/*  */}
     <div style={{ display: "inline-grid", left: '0', position: 'absolute', gridTemplateColumns: "auto auto"}}>
-      <FrameComponent1 onCalendarClick={handleCalendarClick} onDashboardClick={handleDashboardClick} onSSFClick={handleSSFClick}/>
+      <FrameComponent1 onCalendarClick={handleCalendarClick} onDashboardClick={handleDashboardClick} onSSFClick={handleSSFClick} onFocusClick={handleFocusClick} onResourcesClick={handleResourcesClick}/>
       {/* {window.location.pathname === "/calander" ? <Calendar /> : <Dashboard />} */}
       <Routes>
       
       <Route path="/calander" element={<Calander />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/ssf" element={<SelfServiceForum />} />
+      <Route path="/focus" element={<Focus />} />
+      
     </Routes>
       </div>
       

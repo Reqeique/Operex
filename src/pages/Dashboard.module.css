@@ -41,8 +41,8 @@
   }
   .dashboard {
     gap: var(--gap-mid);
-    padding-left: var(--padding-81xl);
-    padding-right: 91px;
+    /* padding-left: var(--padding-81xl);
+    padding-right: 91px; */
     box-sizing: border-box;
   }
 }

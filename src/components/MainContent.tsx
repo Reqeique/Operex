@@ -1,10 +1,11 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import styles from "./MainContent.module.css";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { Theme } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
+import React, { useState } from 'react';
 export type MainContentType = {
   className?: string;
 };
@@ -18,15 +19,70 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
+// const randomQuote = async () => {
+ 
+//   const requestOptions = {
+//     //  mode: 'no-cors' ,
+//       method: 'GET',
+//       headers: { 'Content-Type': 'application/json' },
+    
+//   };
+
+//   const apiUrl = "https://api.quotable.io/random";// Adjust the API endpoint
+
+//   const apiResponse = await fetch(apiUrl, requestOptions);
+//   const data = await apiResponse.json();
+
+//   return (data.response);
+
+// }
+// const response = randomQuote();
 const MainContent: FunctionComponent<MainContentType> = ({
   className = "",
 }) => {
+  const [inputValue, setInputValue] = useState('Test');
   const classes = useStyles()
+//  requestOptions
+  // useEffect(){
+
+  // }
+
+  useEffect(() =>  { 
+
+    const randomQuote = async () => {
+ 
+      const requestOptions = {
+        //  mode: 'no-cors' ,
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        
+      };
+    
+      const apiUrl = "https://api.quotable.io/random";// Adjust the API endpoint
+    
+      const apiResponse = await fetch(apiUrl, requestOptions);
+      const data = await apiResponse.json();
+
+      console.log(data.content);
+    
+      setInputValue (data.content);
+    
+    }
+
+    randomQuote()
+
+
+  },[])
+  
+  // setInputValue(randomQuote())
+  
   
   return (
     <main className={[styles.mainContent, className].join(" ")}>
      
-        <textarea className={styles.progressTop} rows={16} cols={35} />
+        <div className={styles.progressTop}>
+          <h4>{inputValue}</h4>
+        </div>
         <div className={styles.academicProgress}>
             <div className={styles.academicProgressBase} />
             <div className={styles.progressContent1}>

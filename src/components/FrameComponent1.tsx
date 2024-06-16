@@ -6,11 +6,14 @@ export type FrameComponent1Type = {
   onCalendarClick?: () => void;
   onDashboardClick?: () => void;
   onSSFClick?: () => void;
+  onResourcesClick?: () => void;
+  onSettingsClick?: () => void;
+  onFocusClick?: () => void;
 
 };
 
 const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
-  className = "", onCalendarClick, onDashboardClick, onSSFClick,
+  className = "", onCalendarClick, onDashboardClick, onSSFClick, onResourcesClick,  onFocusClick, onSettingsClick
 }) => {
   const handleCalendarClick = () => {
     if (onCalendarClick) {
@@ -27,6 +30,23 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
       onSSFClick();
     }
   };
+
+  const handleResourcesClick = () => {
+    if (onResourcesClick) {
+      onResourcesClick()
+    }
+
+  }
+  const handleFocusClick = () => {
+    if (onFocusClick) {
+      onFocusClick()
+    }
+  }
+  const handleSettingsClick = ()  => {
+     if (onSettingsClick){
+      onSettingsClick()
+     }
+  }
   return (
     <div className={[styles.frameParent, className].join(" ")}>
       <div className={styles.navP }>
@@ -35,7 +55,7 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
         <a className={styles.dashboard} onClick={handleDashboardClick}>Dashboard</a>
       </div>
       <div className={styles.resourcesWrapper}>
-        <b className={styles.resources}>Resources</b>
+        <b className={styles.resources} onClick={handleResourcesClick}>Resources</b>
       </div>
       <div className={styles.calendarWrapper}>
         <a className={styles.calendar} onClick={handleCalendarClick}>Calendar</a>
@@ -44,13 +64,13 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
         <b className={styles.reports}>Reports</b>
       </div>
       <div className={styles.studyWrapper} >
-        <b className={styles.study}>Study</b>
+        <b className={styles.study} onClick={handleFocusClick}>Study</b>
       </div>
       <div className={styles.studyWrapper} onClick={handleSSFClick}>
         <b className={styles.study}>Self Service Forum</b>
       </div>
       <div className={styles.settingWrapper}>
-        <b className={styles.setting}>Setting</b>
+        <b className={styles.setting}  onClick={handleSettingsClick}>Setting</b>
       </div>
       <div className={styles.logoutParentWrapper}>
           <img

@@ -8,6 +8,7 @@ import {
 import HomePage from "./pages/HomePage";
 import AdminLogin from "./pages/AdminLogin";
 import StudentLogin from "./pages/StudentLogin";
+import Assistant from './pages/Assistant';
 import Calander from "./pages/Calander";
 import Dashboard from "./pages/Dashboard";
 
@@ -68,6 +69,7 @@ function App() {
       <Route path="*" element={<HomePage />} />
       <Route path="/admin-login" element={<AdminLogin />} />
       <Route path="/student-login" element={<StudentLogin />} />
+      <Route path="/assistant" element={<Assistant/>} />
     </Routes>
   );
 }

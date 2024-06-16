@@ -4,10 +4,20 @@
   background-color: transparent;
   height: 327px;
   width: auto;
+  /* max-width: 300px; */
   outline: 0;
+  padding: 16px;
+  font-size: x-large;
+  color: white;
   flex: 1;
+  background-image: linear-gradient(to right, #f09819, #edde5d);
   position: relative;
   border-radius: var(--br-mini);
+}
+.progressTop h4 {
+  /* mix-blend-mode: exclusion; */
+  max-width: 600px;
+
 }
 .academicProgressBase,
 .contentLeft,

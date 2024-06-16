@@ -218,7 +218,7 @@
 
   flex-direction: column;
   justify-content: flex-start;
-  padding: 20vh 0 0 0;
+  padding: 5vh 0 0 0;
  
   gap: var(--gap-8xl);
   text-align: start;
