@@ -1,11 +1,11 @@
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent } from "react";
 import styles from "./MainContent.module.css";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { Theme } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 export type MainContentType = {
   className?: string;
 };
@@ -19,70 +19,82 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-// const randomQuote = async () => {
- 
-//   const requestOptions = {
-//     //  mode: 'no-cors' ,
-//       method: 'GET',
-//       headers: { 'Content-Type': 'application/json' },
-    
-//   };
 
-//   const apiUrl = "https://api.quotable.io/random";// Adjust the API endpoint
+const API_URL = 'https://ae914234-ac7d-4c56-94b5-17c360554f3d-00-1aaw2r00r13pk.riker.replit.dev/';
 
-//   const apiResponse = await fetch(apiUrl, requestOptions);
-//   const data = await apiResponse.json();
+async function fetchStudentData(apiUrl = API_URL) { // Use the defined API_URL
+  try {
+    const response = await fetch(apiUrl, {headers: { 
+      method: "GET",
+      'Access-Control-Allow-Origin': '*', 
+      'Access-Control-Allow-Header': 'Content-Type, Authorization, X-Requested-With',
+      // 'Access-Control-Allow-Methods': GET, POST
+      'Access-Control-Allow-Methods':'GET, OPTIONS'
 
-//   return (data.response);
-
-// }
-// const response = randomQuote();
+    }})
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    console.log('API response data:', data); // Log the response data for debugging
+    return data;
+  } catch (error) {
+    console.error('Error fetching student data:', error);
+    return null;
+  }
+}
+const getStudentGPA = (studentData: { gpa: any; } | null) => studentData?.gpa || 'Student Name'; 
+const getStudentrank = (studentData: { rank: any; } | null) => studentData?.rank || 0; 
 const MainContent: FunctionComponent<MainContentType> = ({
   className = "",
 }) => {
-  const [inputValue, setInputValue] = useState('Test');
+  const [studentData, setStudentData] = useState(null);
   const classes = useStyles()
-//  requestOptions
-  // useEffect(){
-
-  // }
-
-  useEffect(() =>  { 
-
-    const randomQuote = async () => {
- 
-      const requestOptions = {
-        //  mode: 'no-cors' ,
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        
-      };
-    
-      const apiUrl = "https://api.quotable.io/random";// Adjust the API endpoint
-    
-      const apiResponse = await fetch(apiUrl, requestOptions);
-      const data = await apiResponse.json();
-
-      console.log(data.content);
-    
-      setInputValue (data.content);
-    
-    }
-
-    randomQuote()
-
-
-  },[])
+  useEffect(() => {
+    const fetchData = async () => {
+      // setIsLoading(true);
+      try {
+        const data = await fetchStudentData(API_URL); // Use API_URL from constant
+        setStudentData(data[1]);
+      } catch (error) {
+        console.error('Error fetching student data:', error);
+      } finally {
+        // setIsLoading(false);
+      }
+    };
   
-  // setInputValue(randomQuote())
+    fetchData();
+  }, []); 
+    
+  // const getStudentrank = (studentData: { rank: any; } | null) => studentData?.rank || 'Student Name'; 
+  // const MainContent: FunctionComponent<MainContentType> = ({
+  //   className = "",
+  // }) => {
+  //   const [studentData, setStudentData] = useState(null);
+  //   const classes = useStyles()
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       // setIsLoading(true);
+  //       try {
+  //         const data = await fetchStudentData(API_URL); // Use API_URL from constant
+  //         setStudentData(data[1]);
+  //       } catch (error) {
+  //         console.error('Error fetching student data:', error);
+  //       } finally {
+  //         // setIsLoading(false);
+  //       }
+  //     };
+    
+    
+  //     fetchData();
+  //   }, []);}
+
   
-  
+
   return (
     <main className={[styles.mainContent, className].join(" ")}>
      
-        <div className={styles.progressTop}>
-          <h4>{inputValue}</h4>
-        </div>
+        <textarea className={styles.progressTop} rows={16} cols={35} />
         <div className={styles.academicProgress}>
             <div className={styles.academicProgressBase} />
             <div className={styles.progressContent1}>
@@ -119,7 +131,7 @@ const MainContent: FunctionComponent<MainContentType> = ({
                   </div>
                   <div className={styles.gPAName}>
                     <div className={styles.gpaPlaceholderParent}>
-                      <b className={styles.gpaPlaceholder}>3.87</b>
+                      <b className={styles.gpaPlaceholder}>{getStudentGPA(studentData)}</b>
                       <div className={styles.progressChart}>
                         <div className={styles.gpa}>GPA</div>
                       </div>
@@ -134,7 +146,7 @@ const MainContent: FunctionComponent<MainContentType> = ({
                   <div className={styles.standingBase} />
                   <div className={styles.standingValue1}>
                     <div className={styles.standingValueRow}>
-                      <b className={styles.standingPlaceholder}>10/40</b>
+                      <b className={styles.standingPlaceholder}>{getStudentrank(studentData)}</b>
                       <div className={styles.standing1}>Standing</div>
                     </div>
                   </div>
@@ -300,3 +312,7 @@ const MainContent: FunctionComponent<MainContentType> = ({
 };
 
 export default MainContent;
+function fetchData(): React.DependencyList | undefined {
+  throw new Error("Function not implemented.");
+}
+
